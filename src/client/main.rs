@@ -1,17 +1,21 @@
-use std::time::Duration;
+use std::{env, time::Duration};
 
 use copypasta::{ClipboardContext, ClipboardProvider};
 use ewebsock::{WsReceiver, WsSender};
 
 fn main() {
 
-    let url = "ws://0.0.0.0:5321";
+    let mut url = env::args().nth(1).expect("failed to pass url param");
+    
+    url.insert_str(0, "ws://");
 
-    let mut clipboard = String::new();
-
-    let (mut send, receive) = connect_to_server(url);
+    url.push_str(":5321");
 
     let mut ctx = ClipboardContext::new().unwrap();
+
+    let mut clipboard = ctx.get_contents().expect("failed to read initial clipboard");
+
+    let (mut send, receive) = connect_to_server(&url);
     
     loop {
         //send.send(ewebsock::WsMessage::Text("hi".to_string()));
