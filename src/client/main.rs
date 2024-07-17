@@ -1,3 +1,5 @@
+use std::time::Duration;
+
 use copypasta::{ClipboardContext, ClipboardProvider};
 use ewebsock::{WsReceiver, WsSender};
 
@@ -55,7 +57,7 @@ fn main() {
         }
        
 
-        
+        std::thread::sleep(Duration::from_millis(500));
 
     }
 }
