@@ -1,0 +1,18 @@
+[package]
+name = "global-clipboard"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cli-clipboard = "0.4.0"
+copypasta = "0.10.1"
+ewebsock = "0.6.0"
+tungstenite = "0.23.0"
+
+[[bin]]
+name = "client"
+path = "src/client/main.rs"
+
+[[bin]]
+name = "server"
+path = "src/server/main.rs"
